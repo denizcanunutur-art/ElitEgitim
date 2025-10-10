@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Etüt Yoklama - Elit</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;padding:12px;color:#333;text-align:center;background:#fff}
+#institutionHeader{font-family:Georgia,serif;font-size:32px;color:#006666;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;margin-bottom:12px;border-radius:10px;border:4px solid; border-image:linear-gradient(45deg,#40E0D0,#FFA500) 1}
+th,td{padding:8px;border:1px solid #ddd}
+button{padding:8px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:bold}
+#bulkBtn{background:#28a745;color:#fff}
+#yokList{border:4px solid;border-image:linear-gradient(45deg,#40E0D0,#FFA500) 1;padding:12px;border-radius:8px}
+#yokOgrenciler{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0;margin:0}
+#yokOgrenciler li{list-style:none;padding:10px 16px;border-radius:10px;background:#f7f7f7;font-weight:700;min-width:140px;text-align:center}
+@media(max-width:600px){#institutionHeader{font-size:24px}}
+</style>
+</head>
+<body>
+
+<script>
+let password = prompt("Siteye girmek için şifreyi girin:");
+if(password !== "elit"){
+  alert("Şifre yanlış! Siteye erişim engellendi.");
+  window.location = "about:blank";
+}
+</script>
+
+<div id="institutionHeader">ELİT EĞİTİM KURUMU</div>
+<h1>Etüt Yoklama Sistemi</h1>
+<button id="bulkBtn">Tüm Yoklara WhatsApp Mesajı Gönder</button>
+
+<table id="studentTable">
+  <tr><th>Öğrenci</th><th>Sınıf</th><th>Var</th><th>Yok</th></tr>
+</table>
+
+<div id="yokList">
+  <h3>Etüte Katılmayan Öğrenciler</h3>
+  <ul id="yokOgrenciler"></ul>
+</div>
+
+<script>
+function b64DecodeUnicode(str) {
+  try {
+    return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+  } catch(e) {
+    return atob(str);
+  }
+}
+
+let students = [
+  { name: "Berrin Kıllı", cls: "11Say", phone_b64: "KzkwMDUzNTM2MTc1MzY=", status: "Var" },
+  { name: "Cemal Tarık Arslanoğlu", cls: "11Say", phone_b64: "KzkwMDUwNTI1NzU0NDM=", status: "Var" },
+  { name: "Emin Dede", cls: "11Say", phone_b64: "KzkwMDUzNDM5Njg4MzA=", status: "Var" },
+  { name: "Esat Çetin", cls: "11Say", phone_b64: "KzkwMDUzODYyNTk0NzI=", status: "Var" },
+  { name: "Nejla Yalçınkaya", cls: "11Say", phone_b64: "KzkwMDUzMjI1NTc4NTM=", status: "Var" },
+  { name: "Pervingül Çevik", cls: "11Say", phone_b64: "KzkwMDUzMDMyODYwMzg=", status: "Var" },
+  { name: "Safiye Kılıç", cls: "11Say", phone_b64: "KzkwMDUzODY1MTY1MzU=", status: "Var" },
+];
+function renderTable(){
+  const table = document.getElementById("studentTable");
+  table.innerHTML = "<tr><th>Öğrenci</th><th>Sınıf</th><th>Var</th><th>Yok</th></tr>";
+  students.forEach((s,i) => {
+    const row = table.insertRow();
+    row.insertCell(0).innerText = s.name;
+    row.insertCell(1).innerText = s.cls;
+    const varCell = row.insertCell(2);
+    const yokCell = row.insertCell(3);
+
+    const r1 = document.createElement("input");
+    r1.type = "radio"; r1.name = "st_"+i; r1.value = "Var";
+    if(s.status === "Var") r1.checked = true;
+    r1.onclick = () => { students[i].status = "Var"; renderTable(); };
+    varCell.appendChild(r1);
+
+    const r2 = document.createElement("input");
+    r2.type = "radio"; r2.name = "st_"+i; r2.value = "Yok";
+    if(s.status === "Yok") r2.checked = true;
+    r2.onclick = () => { students[i].status = "Yok"; renderTable(); };
+    yokCell.appendChild(r2);
+
+    row.style.backgroundColor = s.status==="Var" ? "rgba(0,255,0,0.12)" : (s.status==="Yok" ? "rgba(255,0,0,0.12)" : "transparent");
+  });
+
+  const yoklar = students.filter(x => x.status === "Yok");
+  const list = document.getElementById("yokOgrenciler");
+  list.innerHTML = "";
+  if(yoklar.length === 0){
+    const li = document.createElement("li");
+    li.innerText = "Tüm öğrenciler etütte 👏";
+    list.appendChild(li);
+  } else {
+    yoklar.forEach(x => {
+      const li = document.createElement("li");
+      li.innerText = x.name;
+      list.appendChild(li);
+    });
+  }
+}
+
+document.getElementById("bulkBtn").addEventListener("click", () => {
+  const yoklar = students.filter(s => s.status === "Yok");
+  if(yoklar.length === 0){
+    alert("Şu anda yok olan öğrenci yok.");
+    return;
+  }
+
+  if(!confirm(`${yoklar.length} kişiye WhatsApp ile mesaj gönderilsin mi?`)) return;
+
+  const message = encodeURIComponent("Merhabalar, öğrencimiz etüte katılım sağlamamıştır. Bilginize sunarız.\nElit Eğitim Kurumları");
+
+  yoklar.forEach(s => {
+    const tel = b64DecodeUnicode(s.phone_b64);
+    const telForWa = tel.replace('+','').replace(/\s+/g,'');
+    const url = `https://wa.me/${telForWa}?text=${message}`;
+    window.open(url, "_blank");
+  });
+});
+
+renderTable();
+</script>
+</body>
+</html>
