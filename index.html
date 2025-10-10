@@ -5,16 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Etüt Yoklama - Elit</title>
 <style>
-body{font-family:Arial,Helvetica,sans-serif;padding:12px;color:#333;text-align:center;background:#fff}
-#institutionHeader{font-family:Georgia,serif;font-size:32px;color:#006666;margin-bottom:12px}
-table{width:100%;border-collapse:collapse;margin-bottom:12px;border-radius:10px;border:4px solid; border-image:linear-gradient(45deg,#40E0D0,#FFA500) 1}
-th,td{padding:8px;border:1px solid #ddd}
-button{padding:8px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:bold}
-#bulkBtn{background:#28a745;color:#fff}
-#yokList{border:4px solid;border-image:linear-gradient(45deg,#40E0D0,#FFA500) 1;padding:12px;border-radius:8px}
-#yokOgrenciler{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0;margin:0}
-#yokOgrenciler li{list-style:none;padding:10px 16px;border-radius:10px;background:#f7f7f7;font-weight:700;min-width:140px;text-align:center}
-@media(max-width:600px){#institutionHeader{font-size:24px}}
+  body{font-family:Arial,Helvetica,sans-serif;padding:12px;color:#333;text-align:center;background:#fff}
+  #institutionHeader{font-family:Georgia,serif;font-size:32px;color:#006666;margin-bottom:12px}
+  table{width:100%;border-collapse:collapse;margin-bottom:12px;border-radius:10px;border:4px solid; border-image:linear-gradient(45deg,#40E0D0,#FFA500) 1}
+  th,td{padding:8px;border:1px solid #ddd}
+  button{padding:8px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:bold}
+  #bulkBtn{background:#28a745;color:#fff}
+  #yokList{border:4px solid;border-image:linear-gradient(45deg,#40E0D0,#FFA500) 1;padding:12px;border-radius:8px}
+  #yokOgrenciler{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0;margin:0}
+  #yokOgrenciler li{list-style:none;padding:10px 16px;border-radius:10px;background:#f7f7f7;font-weight:700;min-width:140px;text-align:center}
+  @media(max-width:600px){#institutionHeader{font-size:24px}}
 </style>
 </head>
 <body>
@@ -41,15 +41,7 @@ if(password !== "elit"){
 </div>
 
 <script>
-function b64DecodeUnicode(str) {
-  try {
-    return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-  } catch(e) {
-    return atob(str);
-  }
-}
+function b64DecodeUnicode(str){try{return decodeURIComponent(Array.prototype.map.call(atob(str), function(c){return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);}).join(''));}catch(e){return atob(str);}}
 
 let students = [
   { name: "Berrin Kıllı", cls: "11Say", phone_b64: "KzkwMDUzNTM2MTc1MzY=", status: "Var" },
@@ -59,7 +51,50 @@ let students = [
   { name: "Nejla Yalçınkaya", cls: "11Say", phone_b64: "KzkwMDUzMjI1NTc4NTM=", status: "Var" },
   { name: "Pervingül Çevik", cls: "11Say", phone_b64: "KzkwMDUzMDMyODYwMzg=", status: "Var" },
   { name: "Safiye Kılıç", cls: "11Say", phone_b64: "KzkwMDUzODY1MTY1MzU=", status: "Var" },
+  { name: "Ahmet Burak Altın", cls: "12Say", phone_b64: "KzkwMDUzMzk3ODM2OTc=", status: "Var" },
+  { name: "Anıl Boşnak", cls: "12Say", phone_b64: "KzkwMDUzODYxMDAyODU=", status: "Var" },
+  { name: "Elif Ateş", cls: "12Say", phone_b64: "KzkwMDUzMDUwMjI2MTQ=", status: "Var" },
+  { name: "Erdem Durmaz", cls: "12Say", phone_b64: "KzkwMDU0MTQ2MDA0NDg=", status: "Var" },
+  { name: "İbrahim Efe Akbulut", cls: "12Say", phone_b64: "KzkwMDUzMzU0MDQyNzI=", status: "Var" },
+  { name: "İkbal Demir", cls: "12Say", phone_b64: "KzkwMDUzODAxNTE5MDg=", status: "Var" },
+  { name: "İrem Karaduman", cls: "12Say", phone_b64: "KzkwMDUzNTc3NjI4NDE=", status: "Var" },
+  { name: "Müfide Karaoğlu", cls: "12Say", phone_b64: "KzkwMDUwNzQ0NTQ5NjI=", status: "Var" },
+  { name: "Tülay Pekbalcı", cls: "12Say", phone_b64: "KzkwMDUzMzczMTM5MDc=", status: "Var" },
+  { name: "Ali Akgöbek", cls: "12Tm", phone_b64: "KzkwMDU0MjgwNTE3NjE=", status: "Var" },
+  { name: "Buse Özen", cls: "12Tm", phone_b64: "KzkwMDUzMjUyMjc0MDc=", status: "Var" },
+  { name: "Ecrin Böke", cls: "12Tm", phone_b64: "KzkwMDUzMjY0NjQ0OTk=", status: "Var" },
+  { name: "Irmak Gürcüoğlu", cls: "12Tm", phone_b64: "KzkwMDU1NDk1MTc2Nzc=", status: "Var" },
+  { name: "İlayda Çelik", cls: "12Tm", phone_b64: "KzkwMDUzMzQwOTc4OTc=", status: "Var" },
+  { name: "Kerim Tolga Denizci", cls: "12Tm", phone_b64: "KzkwMDU0MjcyNzI3ODE=", status: "Var" },
+  { name: "Semranur Gümüş", cls: "12Tm", phone_b64: "KzkwMDUzNDM3MDA1NTA=", status: "Var" },
+  { name: "Buse Kurt", cls: "MezunSay", phone_b64: "KzkwMDUzMDIzMzEwNzE=", status: "Var" },
+  { name: "Dicle Göktürk", cls: "MezunSay", phone_b64: "KzkwMDUzNjQwMTAxNDA=", status: "Var" },
+  { name: "İrem Karakozak", cls: "MezunSay", phone_b64: "KzkwMDUzMDIzNjY5MDA=", status: "Var" },
+  { name: "Mehmet Talha Özhan", cls: "MezunSay", phone_b64: "KzkwMDUzNDU1MjA0MDc=", status: "Var" },
+  { name: "Semih Kodaz", cls: "MezunSay", phone_b64: "KzkwMDUzNzQyMzA1Njg=", status: "Var" },
+  { name: "Berrak Gül", cls: "MezunTm", phone_b64: "KzkwMDUzMDYzMDM4NDg=", status: "Var" },
+  { name: "Fatma Özdemir", cls: "MezunTm", phone_b64: "KzkwMDUzNTg3ODg5NzU=", status: "Var" },
+  { name: "Furkan Ak", cls: "MezunTm", phone_b64: "KzkwMDU1MjI5NjEzMjc=", status: "Var" },
+  { name: "Halil Kıssa", cls: "MezunTm", phone_b64: "KzkwMDUzMDE2MDAzMzg=", status: "Var" },
+  { name: "Merve Naz Çetin", cls: "MezunTm", phone_b64: "KzkwMDUzOTU1NTQyNzY=", status: "Var" },
+  { name: "Muhammet Demir", cls: "MezunTm", phone_b64: "KzkwMDUzODk0NTc5ODM=", status: "Var" },
+  { name: "Serhat Akdoğan", cls: "MezunTm", phone_b64: "KzkwMDUzOTc3MzU5NTE=", status: "Var" },
+  { name: "Zübeyde Baven Çelik", cls: "MezunTm", phone_b64: "KzkwMDUzMDIzMzA5NDc=", status: "Var" },
+  { name: "İrem Azgın", cls: "MezunTm", phone_b64: "KzkwMDUzNjMxNTU0MDk=", status: "Var" },
+  { name: "Emre Yıldız", cls: "MezunTm", phone_b64: "KzkwMDU0MjYzNDI2OTU=", status: "Var" },
+  { name: "Osman Özaslan", cls: "MezunTm", phone_b64: "KzkwMDUzNTU2Mjk0MDM=", status: "Var" },
+  { name: "Melike Gökdeniz", cls: "MezunSay", phone_b64: "KzkwMDU0NTcxMzg0OTY=", status: "Var" },
+  { name: "Berkay Çolak", cls: "MezunSay", phone_b64: "KzkwMDUzMjYyMzk4ODM=", status: "Var" },
+  { name: "Burak Şirikoğlu", cls: "MezunSay", phone_b64: "KzkwMDUzMjYwNzk4ODA=", status: "Var" },
+  { name: "Dilara Karaduman", cls: "MezunSay", phone_b64: "KzkwMDUzNDUxMjc3ODU=", status: "Var" },
+  { name: "Berkay Kılınç", cls: "11Say", phone_b64: "KzkwMDUzMjY3Nzk2NzM=", status: "Var" },
+  { name: "Emir Can Mullaoğlu", cls: "MezunTm", phone_b64: "KzkwMDU1MzQ4MTE2MTI=", status: "Var" },
+  { name: "Selehattin Bayrak", cls: "11Say", phone_b64: "KzkwMDU0MzgyOTE4MTQ=", status: "Var" },
+  { name: "Ömer Bucak", cls: "11Say", phone_b64: "KzkwMDUwNTc2OTI2NjM=", status: "Var" },
+  { name: "Dilan Aydoğan", cls: "MezunSay", phone_b64: "KzkwMDU0MTI1MTU3Mjk=", status: "Var" },
+  { name: "Şükrü Kutluhan Erdoğan", cls: "11Say", phone_b64: "KzkwMDUzNjY3NjkyMzk=", status: "Var" }
 ];
+
 function renderTable(){
   const table = document.getElementById("studentTable");
   table.innerHTML = "<tr><th>Öğrenci</th><th>Sınıf</th><th>Var</th><th>Yok</th></tr>";
@@ -95,7 +130,7 @@ function renderTable(){
   } else {
     yoklar.forEach(x => {
       const li = document.createElement("li");
-      li.innerText = x.name;
+      li.innerText = x.name + " (" + x.cls + ")";
       list.appendChild(li);
     });
   }
